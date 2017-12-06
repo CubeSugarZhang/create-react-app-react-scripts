@@ -7,7 +7,8 @@ create-react-app 是一个全局的命令行工具用来创建一个新的项目
 
 react-scripts 是一个生成的项目所需要的开发依赖
   
-    一般我们开始创建react web应用程序的时候,要自己通过 npm 或者 yarn 安装项目的全部依赖，再写webpack.config.js,一系列复杂的配置,搭建好开发环境后写src源代码。
+    一般我们开始创建react web应用程序的时候,要自己通过 npm 或者 yarn 安装项目的全部依赖，
+    再写webpack.config.js,一系列复杂的配置,搭建好开发环境后写src源代码。
 现在 如果你正在搭建react运行环境，使用 create-react-app 去自动构建你的app程序。
 
 你的项目所在的文件夹下是没有配置文件。react-scripts 是唯一的 额外的 构建依赖在你的package.json中，你的运行环境将有每一个你需要用来构建一个现代React app应用程序。
@@ -249,12 +250,13 @@ export default DangerButton;
 
 增加样式
 Button.css
+```css
 .Button {  
   padding: 20px;  
 }  
-
+```
 Button.js
-···JavaScript
+```JavaScript
 import React, { Component } from 'react';  
 import './Button.css'; // 告诉webpack Button.js 使用这些样式  
   
@@ -265,7 +267,7 @@ class Button extends Component {
     return <div className="Button" />;  
   }  
 }  
-···
+```
 
 Autoprefixer
 react-scripts 通过Autoprefixer 帮你的css文件自动添加浏览器兼容前缀
