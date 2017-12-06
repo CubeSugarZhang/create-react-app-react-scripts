@@ -1,5 +1,7 @@
-#create-react-app-react-scripts
-###生成项目所需要的开发依赖 的一个包。
+create-react-app-react-scripts
+====
+生成项目所需要的开发依赖 的一个包。
+----
 
 前言:
 
@@ -29,16 +31,21 @@ A build script to bundle JS, CSS, and images for production, with sourcemaps.
 
 A dev server that lints for common errors.
 
-####Getting Started
-#####安装
+Getting Started
+----
+安装
+----
+```shell
 npm install -g create-react-app  
-
-#####创建一个应用程序 
+```
+创建一个应用程序 
+----
+```shell
 create-react-app my-app  
 cd my-app  
-
-#####生成的目录结构
-
+```
+生成的目录结构
+----
 >my-app/  
      README.md  
   node_modules/  
@@ -56,13 +63,18 @@ cd my-app
     logo.svg  
 没有配置文件（webpack.config.js）
 
-#####运行应用程序
+运行应用程序
+----
+```shell
 npm run start   
 or 
-yarn start  
-#####在浏览器中打开
+yarn start 
+```
+在浏览器中打开
+----
 http://localhost:3000   
 现在我们看 my-app文件夹下的public/index.html 和src/index.js的源码，我们可以在这里编写项目代码，
+
 但是注意 public/index.html 是启动http服务器的首页，src/index.js是编译的入口文件，只能叫index这个名字，改别的名字不行。
 
 打开 http://localhost:3000/index.html 首页，f12查看 网页源码，你会看到 
@@ -77,15 +89,22 @@ http服务器配置,自动代开浏览器窗口，react，es6语法编译，babe
 
 刚才的过程分析
 回顾 
+```shell
 npm run start
+```
 我们 一开始这么启动服务 运行项目
+
 打开你的my-app\package.json
+```javascript
 "scripts": {  
     "start": "react-scripts start",  
       ...  
   }  
+```
 所以执行的是 react-scripts start 
+
 打开你的my-app\node_modules\react-scripts这个文件夹下的bin文件夹下的react-scripts.js文件
+
 #!/usr/bin/env node  
 ```JavaScript
 var spawn = require('cross-spawn');  
