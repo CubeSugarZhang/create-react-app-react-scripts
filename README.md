@@ -65,8 +65,7 @@ http://localhost:3000
 
 打开 http://localhost:3000/index.html 首页，f12查看 网页源码，你会看到 
 
-> <script type="text/javascript" src="/static/js/bundle.js"></script>  
-
+<script type="text/javascript" src="/static/js/bundle.js"></script>  
 /static/js/bundle.js
 在你的项目my-app你是看不到这个文件路径的，你也没有写配置文件webpack.config.js,
 http服务器配置,自动代开浏览器窗口，react，es6语法编译，babel-core，webpack，等等这些 你都没下载，配置。
@@ -78,17 +77,14 @@ http服务器配置,自动代开浏览器窗口，react，es6语法编译，babe
 npm run start
 我们 一开始这么启动服务 运行项目
 打开你的my-app\package.json
-
->"scripts": {  
+"scripts": {  
     "start": "react-scripts start",  
       ...  
   }  
-  
 所以执行的是 react-scripts start 
 打开你的my-app\node_modules\react-scripts这个文件夹下的bin文件夹下的react-scripts.js文件
-
 #!/usr/bin/env node  
->var spawn = require('cross-spawn');  
+var spawn = require('cross-spawn');  
 var script = process.argv[2];  
 var args = process.argv.slice(3);  
   
@@ -101,11 +97,9 @@ case 'test':
     'node',  
     [require.resolve('../scripts/' + script)].concat(args),  
   .......  
-  
 上面代码中  script 的变量值是 start
 所以执行 my-app\node_modules\react-scripts\scripts 文件夹下的  start.js 文件代码节选重点如下
-
->var webpack = require('webpack');  
+var webpack = require('webpack');  
 var WebpackDevServer = require('webpack-dev-server');  // 启动http服务器  
 var paths = require('../config/paths');  //要编译的文件路径与生成路径等  
 var config = require('../config/webpack.config.dev');  
@@ -117,7 +111,7 @@ detect(DEFAULT_PORT).then(port => {
   }  
 ......  
   
->function run(port) {   
+function run(port) {   
 // 这里可以设置 http协议, 或者可以在 npm run start 之前 cmd命令窗口中执行 set HTTPS=true&&npm start 改成https 安全协议  
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";   
   var host = process.env.HOST || 'localhost';     
@@ -127,19 +121,19 @@ detect(DEFAULT_PORT).then(port => {
   
   
 //配置http服务器  
->function runDevServer(host, port, protocol) {  
+function runDevServer(host, port, protocol) {  
   var devServer = new WebpackDevServer(compiler, {  
    compress: true,     
     clientLogLevel: 'none',  
     contentBase: paths.appPublic,   //根据导入的paths 指定应用根目录（即index.html所在目录）  
     hot: true,  
   
-    publicPath: config.output.publicPath, 
-    //根据导入的 config 变量,指定 虚拟目录，自动指向path编译目录（/assets/ => /build/js/）。
-    html中引用js文件时，  
-    //必须引用此虚拟路径（但实际上引用的是内存中的文件，既不是/build/js/也不是/assets/）。  
+    publicPath: config.output.publicPath, //根据导入的 config 变量,指定 虚拟目录，自动指向path编译目录（/assets/ => /build/js/）。html中引用js文件时，  
+                                             //必须引用此虚拟路径（但实际上引用的是内存中的文件，既不是/build/js/也不是/assets/）。  
    
     quiet: true,  
+  
+  
     watchOptions: {  
       ignored: /node_modules/  
     },  
@@ -155,19 +149,16 @@ detect(DEFAULT_PORT).then(port => {
 }  
   
   
->function setupCompiler(host, port, protocol) {  
+function setupCompiler(host, port, protocol) {  
   
   compiler = webpack(config, handleCompile);  //  根据导入的 config 变量  指向的 webpack.config.dev 配置文件  运行  
      /**  
    * 省略其他代码  
    */  
 }  
- 
  start.js 文件代码 中 导入了  my-app\node_modules\react-scripts\config文件夹下的  webpack.config.dev.js 与 paths.js
-
 paths.js  代码节选如下:
-
->var appDirectory = fs.realpathSync(process.cwd());   // 获取npm run start 运行所在的路径  
+var appDirectory = fs.realpathSync(process.cwd());   // 获取npm run start 运行所在的路径  
 function resolveApp(relativePath) {  
   return path.resolve(appDirectory, relativePath);  
 }  
@@ -195,8 +186,7 @@ module.exports = {
  /**  
    * 省略其他代码  
    */  
-   
->webpack.config.dev.js  代码节选如下:
+webpack.config.dev.js  代码节选如下:
 var paths = require('./paths');  //也导入了 同文件夹下的 paths.js  
 module.exports = {  
   entry: [    require.resolve('react-dev-utils/webpackHotDevClient'),    require.resolve('./polyfills'),    paths.appIndexJs     // 编译的入口文件  ],  
@@ -219,7 +209,7 @@ module.exports = {
 
 例如: 
 Button.js
->import React, { Component } from 'react';  
+import React, { Component } from 'react';  
   
 class Button extends Component {  
   render() {  
@@ -229,7 +219,7 @@ class Button extends Component {
 export default Button; // 不要忘记去使用 export default!  
 
 DangerButton.js
->import React, { Component } from 'react';  
+import React, { Component } from 'react';  
 import Button from './Button'; //从另一个文件导入一个组件  
   
 class DangerButton extends Component {  
@@ -241,12 +231,12 @@ export default DangerButton;
 
 增加样式
 Button.css
->.Button {  
+.Button {  
   padding: 20px;  
 }  
 
 Button.js
->import React, { Component } from 'react';  
+import React, { Component } from 'react';  
 import './Button.css'; // 告诉webpack Button.js 使用这些样式  
   
   
@@ -260,15 +250,13 @@ class Button extends Component {
 Autoprefixer
 react-scripts 通过Autoprefixer 帮你的css文件自动添加浏览器兼容前缀
 例如：
->.App {  
+.App {  
   display: flex;  
   flex-direction: row;  
   align-items: center;  
-} 
-
+}  
 变成
-
->.App {  
+.App {  
   display: -webkit-box;  
   display: -ms-flexbox;  
   display: flex;  
@@ -284,12 +272,9 @@ react-scripts 通过Autoprefixer 帮你的css文件自动添加浏览器兼容�
 
 增加CSS预处理器
 首先在 my-app/  目录下  安装node-sass用来将scss编译成css
-
->npm install node-sass --save-dev  
-
+npm install node-sass --save-dev  
 打开my-app/package.json,增加以下代码到scripts中
-
->"scripts": {  
+   "scripts": {  
 +    "build-css": "node-sass src/ -o src/",  
 +    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch",  
      "start": "react-scripts start",  
@@ -299,21 +284,18 @@ react-scripts 通过Autoprefixer 帮你的css文件自动添加浏览器兼容�
 
 现在你可以重新命名my-app/src/App.css to my-app/src/App.scss and 运行   npm run watch-css
 或者你可以改成
-
->"scripts": {  
+"scripts": {  
     "build-css": "node-sass src/ -o src/",  
     "start": "npm run build-css && react-scripts start",  //先执行 build-css 再执行 react-scripts start  
     "build": "react-scripts build",  
     "test": "react-scripts test --env=jsdom",  
     "eject": "react-scripts eject"  
   }  
-  
 直接 npm run start
 
 
 增加图片
-
->import React from 'react';  
+import React from 'react';  
 import logo from './logo.png'; // 告诉webpack 这个js文件使用这张图片  
   
 console.log(logo); // /logo.84287d09.png  会改变图片的名字  
@@ -324,15 +306,11 @@ function Header() {
 }  
   
 export default Header;  
-
 当项目构建的时候，Webpack将正确的移动图片到构建的文件夹下，提供我们正确的路径
-
 在css工作中的方式也一样
-
->.Logo {  
+.Logo {  
   background-image: url(./logo.png);  
-} 
-
+}  
 webpack发现所有的相对模块， 以 ./  开始
 
 增加 bootstrap
@@ -344,10 +322,8 @@ npm install react-bootstrap --save
 npm install bootstrap@3 --save  
 
 修改 my-app/src/index.js
-
 在你的src/index.js 文件内容的顶部，导入 Bootstrap CSS 和可选的 Bootstrap theme CSS
-
->import React from 'react';  
+import React from 'react';  
 import ReactDOM from 'react-dom';  
 import 'bootstrap/dist/css/bootstrap.css';  // 必须的  
 import 'bootstrap/dist/css/bootstrap-theme.css';  //  可选的  
@@ -360,8 +336,7 @@ ReactDOM.render(
 );  
 
 修改 my-app/src/App.js
-
->import React, { Component } from 'react';  
+import React, { Component } from 'react';  
 import { Grid, Navbar, Jumbotron, Button } from 'react-bootstrap';  
   
 class App extends Component {  
