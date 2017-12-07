@@ -1,4 +1,4 @@
-create-react-app-react-scripts
+create-react-app之react-scripts包
 ====
 生成项目所需要的开发依赖 的一个包。
 ----
