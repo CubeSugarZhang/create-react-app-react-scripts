@@ -15,7 +15,7 @@ react-scripts 是一个生成的项目所需要的开发依赖
 
 你的项目所在的文件夹下是没有配置文件。react-scripts 是唯一的 额外的 构建依赖在你的package.json中，你的运行环境将有每一个你需要用来构建一个现代React app应用程序。
 
-你需要的依赖，和在配置文件中编写的配置代码，react-scripts 都帮你写了，比如：react-scripts帮你自动下载需要的 webpack-dev-server 依赖，然后react-scripts自己写了一个nodejs服务端的脚本代码 start.js来 实例化 WebpackDevServer ，并且运行启动了一个使用 express 的Http服务器，现在你只需要专心写src源代码就可以了。省去了很多精力，最适合快速上手一个demo了。
+你需要的依赖，和在配置文件中编写的配置代码，react-scripts 都帮你写了，(以前通过手配置的webpack.config.js的内容react-scripts都已经帮我们做了)比如：react-scripts帮你自动下载需要的 webpack-dev-server 依赖，然后react-scripts自己写了一个nodejs服务端的脚本代码 start.js来 实例化 WebpackDevServer ，并且运行启动了一个使用 express 的Http服务器，现在你只需要专心写src源代码就可以了。省去了很多精力，最适合快速上手一个demo了。
 
 ####react-scripts有以下支持，都帮你配置好了：
 
